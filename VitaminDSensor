@@ -1,0 +1,61 @@
+package ellehacks24;
+import java.util.Scanner;
+
+/**
+ * Pseudocode for the idea of how the sensor works.
+ * Loops present time sensing and decides whether a vitamin D patch should be used.
+ * Vitamin D reference levels from: https://www.healthline.com/nutrition/how-much-vitamin-d-to-take#how-much-do-you-need
+ * By Julie Vuong and Jennifer Dela Cruz
+ */
+
+public class VitaminDSensor { // start class
+    public static void main(String[] args) { // start method
+
+        Scanner input = new Scanner(System.in); // create scanner for user input
+
+        int age = 0; // age of user, in years
+        int vitaminPatch = 0; // value of vitamin patch used. set as 0 as placeholder
+        double vitaminCount = 0; // the count amount for the sensed vitamin D, in IU. set as 0 as placeholder
+        int vitaminRec = 0; // recommended amount for vitamins. set as 0 for placeholder
+        boolean power = false; // device on or off
+
+        System.out.println("How old are you, in years?");
+        /* loop to continue until a proper option is inputted */
+            do {
+                System.out.println("[1] Under 1 year old");
+                System.out.println("[2] 1-70 years old");
+                System.out.println("[3] Over 70 years old\n");
+                    age = input.nextInt();
+            } while (age != 1 && age!= 2 && age!= 3);
+
+            /* set vitamin count */
+            if (age == 1) {
+                vitaminRec = 400;
+            } else if (age == 2) {
+                vitaminRec = 600;
+            } else if (age == 3) {
+                vitaminRec = 800;
+            }
+
+        System.out.println("\n...Initializing...");
+
+        /* note: assume vitamin patch gives 400 IU */
+
+
+            if (vitaminCount < vitaminRec) {
+                System.out.println("Your daily recommended amount of vitamin D (in IU) is " + vitaminRec + ".");
+                System.out.println("As of right now, you currently have " + vitaminCount + " of vitamin D in your body.");
+                System.out.println("You need vitamin D. In a few moments, patch will deliver vitamin D...");
+                System.out.println("...");
+
+            } else if (vitaminCount > vitaminRec) {
+                System.out.println("Your daily recommended amount of vitamin D (in IU) is " + vitaminRec + ".");
+                System.out.println("As of right now, you currently have " + vitaminCount + " of vitamin D in your body.");
+                System.out.println("You do not need vitamin D. You have sufficient vitamin D for the day.");
+                System.out.println("...");
+            }
+                System.out.println("...Initialization complete.");
+
+
+    } // end method
+} // end class
